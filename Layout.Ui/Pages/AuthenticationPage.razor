@@ -1,0 +1,10 @@
+﻿@page "/authentication/{Action}"
+@inherits ComponentBase
+
+<PiralRemoteAuthenticatorView Action="@Action" />
+
+@code{
+    [Parameter]
+    [PiralRouteParameter]
+    public string Action { get; set; }
+}

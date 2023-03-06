@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+		<PiralInstance>../appshell/dist/emulator/appshell-1.0.0.tgz</PiralInstance>
+		<ConfigFolder>.piralconfig</ConfigFolder>
+	  <PiletPriority>999</PiletPriority>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <Content Include=".piralconfig\package-overwrites.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+		<PackageReference Include="AspNetCore.SassCompiler" Version="1.58.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
+	  <PackageReference Include="Piral.Blazor.Tools" Version="7.0.7-pre.20230302.3" />
+	  <PackageReference Include="Piral.Blazor.Utils" Version="7.0.7-pre.20230302.3" />
+	  <PackageReference Include="Piral.Blazor.DevServer" Version="7.0.7-pre.20230302.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Authentication\Framework.Authentication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include=".piralconfig\setup.tsx" />
+    <TypeScriptCompile Include=".piralconfig\teardown.tsx" />
+  </ItemGroup>
+
+</Project>

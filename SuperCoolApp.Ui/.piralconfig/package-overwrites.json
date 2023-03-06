@@ -1,0 +1,7 @@
+{
+  "name": "supercoolapp",
+  "scripts": {
+    "start": "pilet debug ./src/index.tsx ../Layout.Ui/src/index.tsx"
+  } 
+}
+ 

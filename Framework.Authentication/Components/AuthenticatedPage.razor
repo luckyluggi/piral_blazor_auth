@@ -1,0 +1,49 @@
+﻿@namespace Framework.Authentication
+@inherits ComponentBase
+@attribute [PiralComponent]
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authenticationStateProvider
+
+<AuthorizeView>
+    <Authorized>
+        @ChildContent
+    </Authorized>
+</AuthorizeView>
+
+@code{
+    #region props
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    #endregion
+
+    #region lifecycle
+    protected async override void OnInitialized()
+    {
+        base.OnInitialized();
+        await CheckIfAuthenticated();
+    }
+    #endregion
+
+    #region operations
+    async Task CheckIfAuthenticated()
+    {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (!user.Identity.IsAuthenticated)
+        {
+            string url;
+            if (_navigationManager.Uri.Contains("returnUrl="))
+            {
+                var baseUrl = new Uri(_navigationManager.Uri).GetLeftPart(UriPartial.Authority);
+                url = _navigationManager.Uri.Replace(baseUrl, "");
+            }
+            else
+            {
+                url = $"/authentication/login?returnUrl={Uri.EscapeDataString(_navigationManager.Uri)}";
+            }
+            _navigationManager.NavigateTo(url);
+        }
+    }
+    #endregion
+}
