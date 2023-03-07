@@ -4,11 +4,13 @@
 @inject NavigationManager _navigationManager
 @inject AuthenticationStateProvider _authenticationStateProvider
 
-<AuthorizeView>
-    <Authorized>
-        @ChildContent
-    </Authorized>
-</AuthorizeView>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            @ChildContent
+        </Authorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
 
 @code{
     #region props
