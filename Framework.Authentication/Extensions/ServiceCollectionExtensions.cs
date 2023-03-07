@@ -31,16 +31,6 @@ public static class ServiceCollectionExtensions
             opt.ProviderOptions.DefaultAccessTokenScopes.Add("openid");
             opt.ProviderOptions.DefaultAccessTokenScopes.Add("offline_access");
         });
-        //var foo = services.BuildServiceProvider().GetRequiredService<IAuthorizationPolicyProvider>();
-        //if (foo != null)
-        //{
-        //    Console.WriteLine("not null");
-        //}
-        //else
-        //{
-        //    Console.WriteLine("null");
-
-        //}
 
         return services;
     } 
