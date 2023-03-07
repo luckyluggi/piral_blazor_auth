@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -23,8 +24,8 @@ public static class ServiceCollectionExtensions
             opt.ProviderOptions.Authentication.Authority = "[AUTHORITY]";
             opt.ProviderOptions.Authentication.ClientId = "[CLIENT_ID]";
 
-            opt.ProviderOptions.Authentication.ValidateAuthority = false;
-            opt.ProviderOptions.Authentication.RedirectUri = $"/authentication/login-callback";
+            opt.ProviderOptions.Authentication.ValidateAuthority = false; 
+            opt.ProviderOptions.Authentication.RedirectUri = $"/authentication/login-callback"; 
             opt.ProviderOptions.Authentication.PostLogoutRedirectUri = $"/login";
             opt.ProviderOptions.LoginMode = "redirect"; 
 

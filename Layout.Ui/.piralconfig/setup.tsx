@@ -1,10 +1,9 @@
 import { PiletApi } from "shell-cloud";
-
-import "../../piral~/Layout.Ui/dist/_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js";
+type AddScript = (path: string, attrs?: Record<string, string>) => void;
 
 const microfrontendName = "layout";
 
-export default (app: PiletApi) => {
-
+export default (app: PiletApi, addScript: AddScript) => {
+	addScript("_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js");
 };
    
