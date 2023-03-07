@@ -20,10 +20,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped(sp => (IRemoteAuthenticationService<RemoteAuthenticationState>)sp.GetRequiredService<AuthenticationStateProvider>());
         services.AddMsalAuthentication<RemoteAuthenticationState, MyAccount>(opt => {
 
-            //opt.ProviderOptions.Authentication.Authority = "[AUTHORITY]";
-            //opt.ProviderOptions.Authentication.ClientId = "[CLIENT_ID]";
-            opt.ProviderOptions.Authentication.Authority = "https://b2cclouddevgwc.b2clogin.com/b2cclouddevgwc.onmicrosoft.com/B2C_1A_SIGNUP_SIGNIN";
-            opt.ProviderOptions.Authentication.ClientId = "a75a827c-4f17-42b6-b105-10bda3a4828d";
+            opt.ProviderOptions.Authentication.Authority = "[AUTHORITY]";
+            opt.ProviderOptions.Authentication.ClientId = "[CLIENT_ID]";
 
             opt.ProviderOptions.Authentication.ValidateAuthority = false;
             opt.ProviderOptions.Authentication.RedirectUri = $"/authentication/login-callback";
