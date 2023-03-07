@@ -12,11 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+		<PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
 		<PackageReference Include="AspNetCore.SassCompiler" Version="1.58.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
-	  <PackageReference Include="Piral.Blazor.Tools" Version="7.0.7-pre.20230302.3" />
-	  <PackageReference Include="Piral.Blazor.Utils" Version="7.0.7-pre.20230302.3" />
-	  <PackageReference Include="Piral.Blazor.DevServer" Version="7.0.7-pre.20230302.3" />
+	  <PackageReference Include="Piral.Blazor.Tools" Version="7.0.6" />
+	  <PackageReference Include="Piral.Blazor.Utils" Version="7.0.6" />
+	  <PackageReference Include="Piral.Blazor.DevServer" Version="7.0.6" />
   </ItemGroup>
 
   <ItemGroup>

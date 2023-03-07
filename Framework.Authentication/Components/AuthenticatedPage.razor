@@ -12,9 +12,12 @@
 
 @code{
     #region props
+    //[CascadingParameter]
+    //private Task<AuthenticationState> authenticationState { get; set; }
     [Parameter]
     public RenderFragment ChildContent { get; set; }
     #endregion
+
 
     #region lifecycle
     protected async override void OnInitialized()

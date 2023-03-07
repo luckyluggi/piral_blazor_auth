@@ -1,20 +1,7 @@
 @namespace Layout.Ui.Components
 @inherits ComponentBase
-@implements IDisposable
-@*@attribute [PiralExtension("Layout.Initializer")]*@
-@*@inject NavigationManager _navigationManager*@
-@*@inject MyAuthenticationState _authenticationState*@
+@attribute [PiralExtension("Layout.Initializer")]
     
-
 @code {
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        //_authenticationState.OnStateChange += StateHasChanged;
-        //_authenticationState.Initialize();
-    }
-    void IDisposable.Dispose()
-    {
-        //_authenticationState.OnStateChange -= StateHasChanged;
-    }
+
 }

@@ -1,0 +1,13 @@
+﻿@page "/cascading"
+
+<AuthenticatedPage>
+    <h1>Secret Page</h1>
+    <h2>Hello @authenticationState.Result.User.Identity.Name</h2>
+    <p>Only authenticated users can see me.</p>
+    <a href="/hello">go to default page</a>
+</AuthenticatedPage>
+
+@code{
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+}

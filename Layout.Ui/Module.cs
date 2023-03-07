@@ -1,5 +1,6 @@
 using Framework.Authentication;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 public class Module
 {
@@ -15,6 +16,6 @@ public class Module
     public static void ConfigureShared(IServiceCollection services)
     {
         services.AddMyAuthentication();
-        services.AddSingleton<MyAuthenticationState>();
+        services.AddLogging();
     }
 }
