@@ -1,8 +1,8 @@
 ﻿@page "/cascading"
 
 <AuthenticatedPage>
-    <h1>Secret Page</h1>
-    <h2>Hello @authenticationState.Result.User.Identity.Name</h2>
+    <h1>Cascading Page</h1>
+    <h2>Hello @_username</h2>
     <p>Only authenticated users can see me.</p>
     <a href="/hello">go to default page</a>
 </AuthenticatedPage>
@@ -10,4 +10,20 @@
 @code{
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
+
+    string _username { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user?.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                _username = user.Identity.Name;
+            }
+        }
+    }
 }
