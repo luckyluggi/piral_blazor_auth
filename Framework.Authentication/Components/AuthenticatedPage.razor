@@ -1,8 +1,10 @@
 ﻿@namespace Framework.Authentication
+@using Microsoft.Extensions.Options;
 @inherits ComponentBase
 @attribute [PiralComponent]
 @inject NavigationManager _navigationManager
 @inject AuthenticationStateProvider _authenticationStateProvider
+@inject IOptionsSnapshot<RemoteAuthenticationOptions<ApiAuthorizationProviderOptions>> _options
 
 <CascadingAuthenticationState>
     <AuthorizeView>
@@ -37,17 +39,16 @@
 
         if (!user.Identity.IsAuthenticated)
         {
-            string url;
-            if (_navigationManager.Uri.Contains("returnUrl="))
+            InteractiveRequestOptions requestOptions = new()
             {
-                var baseUrl = new Uri(_navigationManager.Uri).GetLeftPart(UriPartial.Authority);
-                url = _navigationManager.Uri.Replace(baseUrl, "");
-            }
-            else
-            {
-                url = $"/authentication/login?returnUrl={Uri.EscapeDataString(_navigationManager.Uri)}";
-            }
-            _navigationManager.NavigateTo(url);
+                Interaction = InteractionType.SignIn,
+                ReturnUrl = _navigationManager.Uri,
+            };
+            //requestOptions.TryAddAdditionalParameter("screen_hint", "signup");
+            _navigationManager.NavigateToLogin(
+                _options.Get(Microsoft.Extensions.Options.Options.DefaultName).AuthenticationPaths.LogInPath,
+                requestOptions
+            );
         }
     }
     #endregion
