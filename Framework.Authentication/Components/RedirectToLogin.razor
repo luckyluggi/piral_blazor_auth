@@ -1,0 +1,29 @@
+﻿@namespace Framework.Authentication
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject IOptionsSnapshot<RemoteAuthenticationOptions<ApiAuthorizationProviderOptions>> _options
+
+@code {
+    #region lifecycle
+    protected async override void OnInitialized()
+    {
+        base.OnInitialized();
+        await CheckIfAuthenticated();
+    }
+    #endregion
+
+    #region operations
+    async Task CheckIfAuthenticated()
+    {
+        InteractiveRequestOptions requestOptions = new()
+        {
+            Interaction = InteractionType.SignIn,
+            ReturnUrl = _navigationManager.Uri,
+        };
+        _navigationManager.NavigateToLogin(
+            _options.Get(Microsoft.Extensions.Options.Options.DefaultName).AuthenticationPaths.LogInPath,
+            requestOptions
+        );
+    }
+    #endregion
+}

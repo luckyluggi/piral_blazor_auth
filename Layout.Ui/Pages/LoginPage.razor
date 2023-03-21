@@ -1,6 +1,20 @@
-﻿
-@page "/login"
+﻿@page "/login"
 @inherits ComponentBase
+@inject NavigationManager _navigationManager
 
-<h1>Login Page</h1>
-<p>Show a Login Button here.</p>
+<AuthorizeView>
+    <Authorized>
+        Hello, @context.User.Identity?.Name!
+        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+    </Authorized>
+    <NotAuthorized>
+        <a href="authentication/login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    public void BeginLogOut()
+    {
+        _navigationManager.NavigateToLogout("authentication/logout");
+    }
+}

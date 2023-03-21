@@ -1,13 +1,27 @@
 ﻿@namespace Layout.Ui.Ui.Components
 @attribute [PiralExtension("Layout.Topbar")]
+@inject NavigationManager _navigationManager
 
 
 <div class="appbar" style="height:4rem; background: cornflowerblue; color: white; display: flex; align-items: center; padding: 5px 10px;">
-    <Extension
-        Name="Layout.Topbar.Left"
-    />
+    <div style="flex-grow: 1;"></div>
+    <div>
+        <Extension
+            Name="Layout.Topbar.Left"
+        />
+        <CascadingAuthenticationState>
+            <AuthorizeView>
+                <Authorized>
+                    <button @onclick="Logout">Logout</button>
+                </Authorized>
+            </AuthorizeView>
+        </CascadingAuthenticationState>
+    </div>
 </div>
 
 @code{
-
+    void Logout()
+    {
+        _navigationManager.NavigateToLogout("authentication/logout");
+    }
 }

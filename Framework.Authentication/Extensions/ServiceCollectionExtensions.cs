@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -24,10 +25,10 @@ public static class ServiceCollectionExtensions
             opt.ProviderOptions.Authentication.Authority = "[AUTHORITY]";
             opt.ProviderOptions.Authentication.ClientId = "[CLIENT_ID]";
 
-            opt.ProviderOptions.Authentication.ValidateAuthority = false; 
+            opt.ProviderOptions.Authentication.ValidateAuthority = true; 
             opt.ProviderOptions.Authentication.RedirectUri = $"/authentication/login-callback"; 
             opt.ProviderOptions.Authentication.PostLogoutRedirectUri = $"/login";
-            opt.ProviderOptions.LoginMode = "redirect"; 
+            opt.ProviderOptions.LoginMode = "redirect";
 
             opt.ProviderOptions.DefaultAccessTokenScopes.Add("openid");
             opt.ProviderOptions.DefaultAccessTokenScopes.Add("offline_access");
