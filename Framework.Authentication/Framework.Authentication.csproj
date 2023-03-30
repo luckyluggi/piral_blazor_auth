@@ -15,7 +15,7 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.4" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.4" />
 	  <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.4" />
-	  <PackageReference Include="Piral.Blazor.Utils" Version="7.0.7" />
+	  <PackageReference Include="Piral.Blazor.Utils" Version="7.0.8-pre.20230329.1" />
   </ItemGroup>
 
 </Project> 
