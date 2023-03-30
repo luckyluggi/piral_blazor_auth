@@ -1,3 +1,21 @@
 ﻿@namespace Framework.Authentication
 @attribute [PiralComponent]
-@inherits CascadingAuthenticationState
+@inject AuthenticationStateProvider _authenticationStateProvider
+
+<CascadingValue Value=@_authenticationState>
+    @ChildContent
+</CascadingValue>
+
+@code{
+    [Parameter] 
+    public RenderFragment ChildContent { get; set; }
+
+    Microsoft.AspNetCore.Components.Authorization.AuthenticationState _authenticationState;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authenticationState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        Console.WriteLine("authState: " + _authenticationState.User.Identity.Name);
+        StateHasChanged();
+    }
+}

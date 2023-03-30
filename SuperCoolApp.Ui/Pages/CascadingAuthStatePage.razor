@@ -3,27 +3,27 @@
 <AuthenticatedPage>
     <h1>Cascading Page</h1>
     <h2>Hello @_username</h2>
+    <h3>TestValue: @TestValue</h3>
     <p>Only authenticated users can see me.</p>
     <a href="/hello">go to default page</a>
 </AuthenticatedPage>
 
 @code{
     [CascadingParameter]
-    private Task<AuthenticationState> authenticationState { get; set; }
+    private Microsoft.AspNetCore.Components.Authorization.AuthenticationState authenticationState { get; set; }
+
+    [CascadingParameter(Name = "TestValue")]
+    private string TestValue { get; set; }
 
     string _username { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        if (authenticationState is not null)
-        {
-            var authState = await authenticationState;
-            var user = authState?.User;
+        var user = authenticationState?.User;
 
-            if (user?.Identity is not null && user.Identity.IsAuthenticated)
-            {
-                _username = user.Identity.Name;
-            }
+        if (user?.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            _username = user.Identity.Name;
         }
     }
 }

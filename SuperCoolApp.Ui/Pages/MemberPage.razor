@@ -1,0 +1,21 @@
+﻿@page "/app/member"
+@inject AuthenticationStateProvider _authenticationStateProvider
+
+<AuthenticatedPage>
+    <h1>Member Page</h1>
+    <h2>Hello @_userName</h2>
+    <p>Only authenticated users can see me.</p>
+    <a href="/hello">go to default page</a>
+</AuthenticatedPage> 
+
+@code {
+    string _userName { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        _userName = authState.User.Identity.Name;
+    }
+}
