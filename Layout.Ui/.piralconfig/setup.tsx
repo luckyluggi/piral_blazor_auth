@@ -1,4 +1,4 @@
-import { PiletApi } from "shell-cloud";
+import { PiletApi } from "appshell";
 type AddScript = (path: string, attrs?: Record<string, string>) => void;
 
 const microfrontendName = "layout";

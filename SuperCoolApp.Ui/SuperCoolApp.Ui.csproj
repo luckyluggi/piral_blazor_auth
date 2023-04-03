@@ -23,10 +23,5 @@
 	  <ProjectReference Include="..\Framework.Authentication\Framework.Authentication.csproj" />
 	</ItemGroup>
   
-	<ItemGroup>
-	  <TypeScriptCompile Include=".piralconfig\setup.tsx" />
-	  <TypeScriptCompile Include=".piralconfig\teardown.tsx" />
-	</ItemGroup>
-  
 </Project>
   

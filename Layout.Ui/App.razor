@@ -1,7 +1,7 @@
 ﻿@attribute [PiralAppRoot]
 
 <PiralCascadingAuthenticationState>
-    <CascadingValue Name="TestValue" Value=@("Lorem ipsum")>
+    <CascadingValue Name="TestValue" Value=@(new ExampleClass("Lorem Ipsum"))>
         @ChildContent
     </CascadingValue>
 </PiralCascadingAuthenticationState>

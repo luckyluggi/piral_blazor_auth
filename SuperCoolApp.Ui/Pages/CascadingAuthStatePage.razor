@@ -2,18 +2,32 @@
 
 <AuthenticatedPage>
     <h1>Cascading Page</h1>
-    <h2>Hello @_username</h2>
-    <h3>TestValue: @TestValue</h3>
+    @if (!string.IsNullOrEmpty(_username))
+    {
+        <h2>Username: @_username</h2>
+    }
+    else
+    {
+        <h2>Username: <span style="color: red;">no value</span></h2>
+    }
+    @if (TestValue != null)
+    {
+        <h3>TestValue: @TestValue.Value</h3>
+    }
+    else
+    {
+        <h3>TestValue: <span style="color: red;">no value</span></h3>
+    }
     <p>Only authenticated users can see me.</p>
     <a href="/hello">go to default page</a>
 </AuthenticatedPage>
 
 @code{
     [CascadingParameter]
-    private Microsoft.AspNetCore.Components.Authorization.AuthenticationState authenticationState { get; set; }
+    public Microsoft.AspNetCore.Components.Authorization.AuthenticationState authenticationState { get; set; }
 
     [CascadingParameter(Name = "TestValue")]
-    private string TestValue { get; set; }
+    public ExampleClass TestValue { get; set; }
 
     string _username { get; set; }
 
